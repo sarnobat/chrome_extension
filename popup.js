@@ -89,12 +89,16 @@ function getImageUrl(searchTerm, callback, errorCallback) {
 }
 
 function renderStatus(statusText) {
-//  document.getElementById('status').textContent = statusText;
-  document.getElementById('status').innerHTML = statusText;
-  console.debug('hello');
-  var w = window.open();//'http://www.teamtalk.com');
-  w.document.write("Hello 2");
-//  w.close();
+	if (false) {
+		document.getElementById('status').textContent = statusText;
+	} else {
+		document.getElementById('status').innerHTML = statusText;
+		console.debug('hello');
+		var w = window.open();//'http://www.teamtalk.com');
+		w.document.write("Hello 2");
+		w.alert("hi1");
+		w.close();
+	}
 }
 
 document.addEventListener('DOMContentLoaded', function() {
