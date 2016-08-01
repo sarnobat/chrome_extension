@@ -101,16 +101,18 @@ function renderStatus(statusText) {
 		chrome.tabs.update({
 			 url: "http://www.google.com/"
 		});
-/*
+
 		doInCurrentTab(function(tab){
+/*		
 			var activeTabId = tab.id;
 			//window.alert('hi2: ' + tab.id);
 			
 			window.location.href = 'http://netgear.rohidekar.com/yurl/stash2.html?url=' + encodeURIComponent(document.URL) + '&nodeId=45'  ;
 			
 			chrome.tabs.remove(tab.id);
-		});
 */
+		});
+
 
 	} else {
 		var w = window.open();//'http://www.teamtalk.com');
