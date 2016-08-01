@@ -98,17 +98,20 @@ function doInCurrentTab(tabCallback) {
 function renderStatus(statusText) {
 	if (true) {
 
-		chrome.tabs.update({
-			 url: "http://www.google.com/"
-		});
 
 		doInCurrentTab(function(tab){
-/*		
+		
 			var activeTabId = tab.id;
+			
+			chrome.tabs.update({
+				url: "http://www.google.com/"
+			});
+
+/*
 			//window.alert('hi2: ' + tab.id);
 			
 			window.location.href = 'http://netgear.rohidekar.com/yurl/stash2.html?url=' + encodeURIComponent(document.URL) + '&nodeId=45'  ;
-			
+
 			chrome.tabs.remove(tab.id);
 */
 		});
