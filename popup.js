@@ -88,16 +88,51 @@ function getImageUrl(searchTerm, callback, errorCallback) {
   x.send();
 }
 
+function doInCurrentTab(tabCallback) {
+    chrome.tabs.query(
+        { currentWindow: true, active: true },
+        function (tabArray) { tabCallback(tabArray[0]); }
+    );
+}
+
 function renderStatus(statusText) {
-	if (false) {
-		document.getElementById('status').textContent = statusText;
+	if (true) {
+		//window.alert('hi' + chrome.tabs);
+	
+		var activeTabId;
+		doInCurrentTab(function(tab){
+			activeTabId = tab.id;
+			window.alert('hi2: ' + tab.id);
+			chrome.tabs.remove(tab.id);
+
+		});
+
+//		window.alert(chrome.app.window.current);
+//		window.open('','_self','');window.close();
+//		window.document.body.innerHTML = '';
+//window.document.body.parentElement.removeChild(window.document.body);
+		//document.getElementById('status').textContent = statusText;
+//		if (document.URL.match('.*netgear.rohidekar.com.*')) { 
+//			console.debug('accidental double click'); 
+//		} else { 
+//			var yurl = 'http://netgear.rohidekar.com/yurl/stash2.html?url=' + encodeURIComponent(document.URL) + '&nodeId=45'  ;
+//			window.location.href = yurl;
+
+//window.document.write(yurl);
+//		}
 	} else {
-		document.getElementById('status').innerHTML = statusText;
-		console.debug('hello');
+
+
 		var w = window.open();//'http://www.teamtalk.com');
-		w.document.write("Hello 2");
-		w.alert("hi1");
-		w.close();
+		w.console.debug('hello');
+		document.getElementById('status').innerHTML = statusText;
+
+		var ok = w.confirm("Stashed. Would you like to close");
+		if (ok) {
+			w.close();
+		} else {
+			w.document.write("Hello 2");
+		}
 	}
 }
 
