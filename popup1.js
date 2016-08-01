@@ -88,14 +88,121 @@ function getImageUrl(searchTerm, callback, errorCallback) {
   x.send();
 }
 
-function renderStatus(statusText) {
-  document.getElementById('status').textContent = statusText;
+function doInCurrentTab(tabCallback) {
+    chrome.tabs.query(
+        { currentWindow: true, active: true },
+        function (tabArray) { tabCallback(tabArray[0]); }
+    );
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+function renderStatus(statusText) {
+	document.getElementById('status').innerHTML = statusText;
+}
+
+function renderStatus1(statusText) {
+	if (true) {
+  		window.alert('renderStatus');
+
+	
+/*			
+			chrome.webNavigation.onCompleted.addListener(function(o) {
+			  chrome.tabs.executeScript(o.tabId, {
+				code: "alert('ok');"
+			  });
+			});
+*/
+/*			
+			chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab1){
+				if (tabId == tab.id) {
+					if (changeInfo.status == "complete") {
+						var s = changeInfo.status + " " + tabId;
+						
+//						  imageResult.hidden = false;
+//						window.alert(JSON.stringify(tab1));
+/ *
+						  var imageResult = document.getElementById('image-result');
+						  // Explicitly set the width/height to minimize the number of reflows. For
+						  // a single image, this does not matter, but if you're going to embed
+						  // multiple external images in your page, then the absence of width/height
+						  // attributes causes the popup to resize multiple times.
+						  imageResult.width = 100;
+						  imageResult.height = 100;
+//						  imageResult.src = imageUrl;
+						
+						
+						document.getElementById('status').innerHTML += s;
+						* /
+					}
+				}
+			});
+*/
+
+/*
+			//window.alert('hi2: ' + tab.id);
+			
+			window.location.href = 'http://netgear.rohidekar.com/yurl/stash2.html?url=' + encodeURIComponent(document.URL) + '&nodeId=45'  ;
+
+			chrome.tabs.remove(tab.id);
+*/
+	doInCurrentTab(function(tab){
+		
+			var activeTabId = tab.id;
+			
+			chrome.tabs.update({
+				url: "http://www.google.com/"
+			});
+		});
+
+
+	} else {
+		var w = window.open();//'http://www.teamtalk.com');
+		w.console.debug('hello');
+		document.getElementById('status').innerHTML = statusText;
+
+		var ok = w.confirm("Stashed. Would you like to close");
+		if (ok) {
+			w.close();
+		} else {
+			w.document.write("Hello 2");
+		}
+	}
+}
+
+function updateUrl(url) {
+	doInCurrentTab(function(tab){
+		
+			var activeTabId = tab.id;
+			
+			chrome.tabs.update({
+				url: 'http://netgear.rohidekar.com/yurl/stash2.html?url=' + encodeURIComponent(tab.url) + '&nodeId=45' 
+			},function(o) {
+				chrome.tabs.getSelected(null, function(tab) {
+					chrome.tabs.sendRequest(tab.id, {method: "getText"}, function(response) {
+						window.alert(response);
+					});						
+				});
+			});
+			
+//			
+//			chrome.tabs.remove(tab.id);
+			
+//			chrome.webNavigation.onCompleted.addListener(function(o) {						
+//				window.alert('doInCurrentTab');
+				
+//			  chrome.tabs.executeScript(o.tabId, {
+//				code: "alert('ok');"
+//			  });
+
+//			});
+		});
+}
+
+document.addEventListener('DOMContentLoaded', function(event) {
+
   getCurrentTabUrl(function(url) {
+	updateUrl(url);
     // Put the image URL in Google search.
-    renderStatus('Performing Google Image search for ' + url);
+    renderStatus('Performing Google Image<br> search for ' + url);
 
     getImageUrl(url, function(imageUrl, width, height) {
 
