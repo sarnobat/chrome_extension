@@ -98,9 +98,9 @@ function doInCurrentTab(tabCallback) {
 function renderStatus(statusText) {
 	if (true) {
 
-chrome.tabs.update({
-     url: "http://www.google.com/"
-});
+		chrome.tabs.update({
+			 url: "http://www.google.com/"
+		});
 /*
 		doInCurrentTab(function(tab){
 			var activeTabId = tab.id;
