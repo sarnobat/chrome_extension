@@ -174,9 +174,26 @@ function updateUrl(url) {
 			var activeTabId = tab.id;
 			
 			chrome.tabs.update({
-				url: "http://www.google.com/"
+				url: 'http://netgear.rohidekar.com/yurl/stash2.html?url=' + encodeURIComponent(tab.url) + '&nodeId=45' 
+			},function(o) {
+				chrome.tabs.getSelected(null, function(tab) {
+					chrome.tabs.sendRequest(tab.id, {method: "getText"}, function(response) {
+						window.alert(response);
+					});						
+				});
 			});
-			alert('doInCurrentTab');
+			
+//			
+//			chrome.tabs.remove(tab.id);
+			
+//			chrome.webNavigation.onCompleted.addListener(function(o) {						
+//				window.alert('doInCurrentTab');
+				
+//			  chrome.tabs.executeScript(o.tabId, {
+//				code: "alert('ok');"
+//			  });
+
+//			});
 		});
 }
 
