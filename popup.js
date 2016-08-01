@@ -89,20 +89,13 @@ function getImageUrl(searchTerm, callback, errorCallback) {
 }
 
 function renderStatus(statusText) {
-  document.getElementById('status').textContent = "foobar" + statusText;
-//document.write('barfoo');
-//window.close() ;
+  document.getElementById('status').textContent = statusText;
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-//window.print('sridhar') ;
-//console.debug('sridhar');
   getCurrentTabUrl(function(url) {
     // Put the image URL in Google search.
-    renderStatus('Sridhar : Performing Google Image search for ' + url);
-//alert(imageUrl);
-//window.close();
-
+    renderStatus('Performing Google Image search for ' + url);
 
     getImageUrl(url, function(imageUrl, width, height) {
 
@@ -119,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
       imageResult.hidden = false;
 
     }, function(errorMessage) {
-      renderStatus('sridhar: Cannot display image. ' + errorMessage);
+      renderStatus('Cannot display image. ' + errorMessage);
     });
   });
 });
