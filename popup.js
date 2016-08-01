@@ -97,32 +97,22 @@ function doInCurrentTab(tabCallback) {
 
 function renderStatus(statusText) {
 	if (true) {
-		//window.alert('hi' + chrome.tabs);
-	
-		var activeTabId;
+
+chrome.tabs.update({
+     url: "http://www.google.com/"
+});
+/*
 		doInCurrentTab(function(tab){
-			activeTabId = tab.id;
-			window.alert('hi2: ' + tab.id);
+			var activeTabId = tab.id;
+			//window.alert('hi2: ' + tab.id);
+			
+			window.location.href = 'http://netgear.rohidekar.com/yurl/stash2.html?url=' + encodeURIComponent(document.URL) + '&nodeId=45'  ;
+			
 			chrome.tabs.remove(tab.id);
-
 		});
+		*/
 
-//		window.alert(chrome.app.window.current);
-//		window.open('','_self','');window.close();
-//		window.document.body.innerHTML = '';
-//window.document.body.parentElement.removeChild(window.document.body);
-		//document.getElementById('status').textContent = statusText;
-//		if (document.URL.match('.*netgear.rohidekar.com.*')) { 
-//			console.debug('accidental double click'); 
-//		} else { 
-//			var yurl = 'http://netgear.rohidekar.com/yurl/stash2.html?url=' + encodeURIComponent(document.URL) + '&nodeId=45'  ;
-//			window.location.href = yurl;
-
-//window.document.write(yurl);
-//		}
 	} else {
-
-
 		var w = window.open();//'http://www.teamtalk.com');
 		w.console.debug('hello');
 		document.getElementById('status').innerHTML = statusText;
