@@ -89,13 +89,18 @@ function getImageUrl(searchTerm, callback, errorCallback) {
 }
 
 function renderStatus(statusText) {
-  document.getElementById('status').textContent = statusText;
+//  document.getElementById('status').textContent = statusText;
+  document.getElementById('status').innerHTML = statusText;
+  console.debug('hello');
+  var w = window.open();//'http://www.teamtalk.com');
+  w.document.write("Hello 2");
+//  w.close();
 }
 
 document.addEventListener('DOMContentLoaded', function() {
   getCurrentTabUrl(function(url) {
     // Put the image URL in Google search.
-    renderStatus('Performing Google Image search for ' + url);
+    renderStatus('Performing Google Image<br> search for ' + url);
 
     getImageUrl(url, function(imageUrl, width, height) {
 
