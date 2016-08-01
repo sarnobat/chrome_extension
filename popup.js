@@ -96,16 +96,46 @@ function doInCurrentTab(tabCallback) {
 }
 
 function renderStatus(statusText) {
+	document.getElementById('status').innerHTML = statusText;
+}
+
+function renderStatus1(statusText) {
 	if (true) {
+  		window.alert('renderStatus');
 
-
-		doInCurrentTab(function(tab){
-		
-			var activeTabId = tab.id;
-			
-			chrome.tabs.update({
-				url: "http://www.google.com/"
+	
+/*			
+			chrome.webNavigation.onCompleted.addListener(function(o) {
+			  chrome.tabs.executeScript(o.tabId, {
+				code: "alert('ok');"
+			  });
 			});
+*/
+/*			
+			chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab1){
+				if (tabId == tab.id) {
+					if (changeInfo.status == "complete") {
+						var s = changeInfo.status + " " + tabId;
+						
+//						  imageResult.hidden = false;
+//						window.alert(JSON.stringify(tab1));
+/ *
+						  var imageResult = document.getElementById('image-result');
+						  // Explicitly set the width/height to minimize the number of reflows. For
+						  // a single image, this does not matter, but if you're going to embed
+						  // multiple external images in your page, then the absence of width/height
+						  // attributes causes the popup to resize multiple times.
+						  imageResult.width = 100;
+						  imageResult.height = 100;
+//						  imageResult.src = imageUrl;
+						
+						
+						document.getElementById('status').innerHTML += s;
+						* /
+					}
+				}
+			});
+*/
 
 /*
 			//window.alert('hi2: ' + tab.id);
@@ -114,6 +144,13 @@ function renderStatus(statusText) {
 
 			chrome.tabs.remove(tab.id);
 */
+	doInCurrentTab(function(tab){
+		
+			var activeTabId = tab.id;
+			
+			chrome.tabs.update({
+				url: "http://www.google.com/"
+			});
 		});
 
 
@@ -131,8 +168,22 @@ function renderStatus(statusText) {
 	}
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+function updateUrl(url) {
+	doInCurrentTab(function(tab){
+		
+			var activeTabId = tab.id;
+			
+			chrome.tabs.update({
+				url: "http://www.google.com/"
+			});
+			alert('doInCurrentTab');
+		});
+}
+
+document.addEventListener('DOMContentLoaded', function(event) {
+
   getCurrentTabUrl(function(url) {
+	updateUrl(url);
     // Put the image URL in Google search.
     renderStatus('Performing Google Image<br> search for ' + url);
 
