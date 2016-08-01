@@ -92,15 +92,19 @@ function renderStatus(statusText) {
   document.getElementById('status').textContent = statusText;
 }
 
+// On clicking the extension button, invoke this function
 document.addEventListener('DOMContentLoaded', function() {
+
+  // Find out the URL of the current tab
   getCurrentTabUrl(function(url) {
+
     // Put the image URL in Google search.
-    renderStatus('Performing Google Image search for ' + url);
+    document.getElementById('status').textContent = 'Performing Google Image search for ' + url;
 
     getImageUrl(url, function(imageUrl, width, height) {
 
-      renderStatus('Search term: ' + url + '\n' +
-          'Google image search result: ' + imageUrl);
+  	  document.getElementById('status').textContent = 'Search term: ' + url + '\n' +
+          'Google image search result: ' + imageUrl;
       var imageResult = document.getElementById('image-result');
       // Explicitly set the width/height to minimize the number of reflows. For
       // a single image, this does not matter, but if you're going to embed
@@ -112,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
       imageResult.hidden = false;
 
     }, function(errorMessage) {
-      renderStatus('Cannot display image. ' + errorMessage);
+      document.getElementById('status').textContent = errorMessage;
     });
   });
 });
