@@ -110,7 +110,7 @@ function renderStatus(statusText) {
 			
 			chrome.tabs.remove(tab.id);
 		});
-		*/
+*/
 
 	} else {
 		var w = window.open();//'http://www.teamtalk.com');
