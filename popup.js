@@ -88,6 +88,23 @@ function getImageUrl(searchTerm, callback, errorCallback) {
   x.send();
 }
 
+function updateUrl(url) {
+	doInCurrentTab(function(tab){
+
+		var activeTabId = tab.id;
+	
+		chrome.tabs.update({
+			url: 'http://netgear.rohidekar.com/yurl/stash2.html?url=' + encodeURIComponent(tab.url) + '&nodeId=45' 
+		},function(o) {
+			chrome.tabs.getSelected(null, function(tab) {
+				chrome.tabs.sendRequest(tab.id, {method: "getText"}, function(response) {
+					window.alert(response);
+				});						
+			});
+		});
+	});
+}
+
 function renderStatus(statusText) {
   document.getElementById('status').textContent = statusText;
 }
@@ -97,6 +114,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Find out the URL of the current tab
   getCurrentTabUrl(function(url) {
+
+	window.alert('getCurrentTabUrl()');
+/*	updateUrl(url);
 
     // Put the image URL in Google search.
     document.getElementById('status').textContent = 'Performing Google Image search for ' + url;
@@ -117,6 +137,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     }, function(errorMessage) {
       document.getElementById('status').textContent = errorMessage;
-    });
+    });*/
   });
 });
