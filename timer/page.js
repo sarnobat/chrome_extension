@@ -4,11 +4,13 @@
 
 chrome.runtime.onConnect.addListener(function(port) {
   port.onMessage.addListener(function(msg) {
+	console.debug('chrome.runtime.onConnect.addListener');
     port.postMessage({counter: msg.counter+1});
   });
 });
 
 chrome.extension.onRequest.addListener(
   function(request, sender, sendResponse) {
+  	console.debug('chrome.extension.onRequest.addListener');
     sendResponse({counter: request.counter+1});
   });
