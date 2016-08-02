@@ -88,17 +88,32 @@ function getImageUrl(searchTerm, callback, errorCallback) {
   x.send();
 }
 
+function doInCurrentTab(tabCallback) {
+    chrome.tabs.query(
+        { currentWindow: true, active: true },
+        function (tabArray) { tabCallback(tabArray[0]); }
+    );
+}
+
 function updateUrl(url) {
+//window.alert(response);
 	doInCurrentTab(function(tab){
 
 		var activeTabId = tab.id;
 	
 		chrome.tabs.update({
-			url: 'http://netgear.rohidekar.com/yurl/stash2.html?url=' + encodeURIComponent(tab.url) + '&nodeId=45' 
+			url: 'http://netgear.rohidekar.com:4447/yurl/stash?rootId=48&&param1=' +  encodeURIComponent(url)
 		},function(o) {
 			chrome.tabs.getSelected(null, function(tab) {
 				chrome.tabs.sendRequest(tab.id, {method: "getText"}, function(response) {
-					window.alert(response);
+					window.alert("done");
+					if (response == null) {
+						window.alert(chrome.runtime.lastError);
+					} else {
+						window.alert(response);
+					}
+//					renderStatus(JSON.stringify(response));
+
 				});						
 			});
 		});
@@ -115,9 +130,9 @@ document.addEventListener('DOMContentLoaded', function() {
   // Find out the URL of the current tab
   getCurrentTabUrl(function(url) {
 
-	window.alert('getCurrentTabUrl()');
-/*	updateUrl(url);
-
+//	window.alert('getCurrentTabUrl()');
+	updateUrl(url);
+/*
     // Put the image URL in Google search.
     document.getElementById('status').textContent = 'Performing Google Image search for ' + url;
 
