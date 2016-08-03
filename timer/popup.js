@@ -2,43 +2,46 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-if (!chrome.benchmarking) {
-  alert("Warning:  Looks like you forgot to run chrome with " +
-        " --enable-benchmarking set.");
-  return;
-}
-
 function setChildTextNode(elementId, text) {
+	console.debug("setChildTextNode("+elementId+")");
   document.getElementById(elementId).innerText = text;
 }
 
 // Tests the roundtrip time of sendRequest().
 function testRequest() {
-  setChildTextNode("resultsRequest", "running...");
+  setChildTextNode("resultsRequest", "1 running...");
 
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    var timer = new chrome.Interval();
-    timer.start();
-    var tab = tabs[0];
-    chrome.tabs.sendRequest(tab.id, {counter: 1}, function handler(response) {
-      if (response.counter < 1000) {
-        chrome.tabs.sendRequest(tab.id, {counter: response.counter}, handler);
-      } else {
-        timer.stop();
-        var usec = Math.round(timer.microseconds() / response.counter);
-        setChildTextNode("resultsRequest", usec + "usec");
+	//console.debug('tabs: ' + JSON.stringify(tabs));
+	var tab = tabs[0];
+	console.debug('tabs: ' + tab.id);
+	chrome.tabs.sendRequest(tab.id, {counter: 1}, function handler(response) {
+		console.debug('response: ' + JSON.stringify(response));
+	});
+    /*
+    
+    
+    
+      if (response == null) {
+      	console.debug(chrome.runtime.lastError);
+      } else {	
+		  if (response.counter < 1000) {
+			chrome.tabs.sendRequest(tab.id, {counter: response.counter}, handler);
+		  } else {
+			setChildTextNode("resultsRequest", "1 usec");
+		  }
       }
     });
+    */
   });
 }
 
 // Tests the roundtrip time of Port.postMessage() after opening a channel.
 function testConnect() {
-  setChildTextNode("resultsConnect", "running...");
+  setChildTextNode("resultsConnect", "2 running...");
 
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    var timer = new chrome.Interval();
-    timer.start();
+
 
     var port = chrome.tabs.connect(tabs[0].id);
     port.postMessage({counter: 1});
@@ -46,9 +49,7 @@ function testConnect() {
       if (response.counter < 1000) {
         port.postMessage({counter: response.counter});
       } else {
-        timer.stop();
-        var usec = Math.round(timer.microseconds() / response.counter);
-        setChildTextNode("resultsConnect", usec + "usec");
+        setChildTextNode("resultsConnect", "2 usec");
       }
     });
   });
