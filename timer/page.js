@@ -10,7 +10,7 @@ chrome.runtime.onConnect.addListener(function(port) {
   });
 });
 */
-chrome.extension.onRequest.addListener(
+chrome.extension.onMessage.addListener(
   function(request, sender, sendResponse) {
   	console.debug('1 chrome.extension.onRequest.addListener');
     sendResponse({counter: request.counter+1});
