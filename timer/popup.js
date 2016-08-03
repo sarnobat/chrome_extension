@@ -18,21 +18,7 @@ function testRequest() {
 	chrome.tabs.sendRequest(tab.id, {counter: 1}, function handler(response) {
 		console.debug('response: ' + JSON.stringify(response));
 	});
-    /*
     
-    
-    
-      if (response == null) {
-      	console.debug(chrome.runtime.lastError);
-      } else {	
-		  if (response.counter < 1000) {
-			chrome.tabs.sendRequest(tab.id, {counter: response.counter}, handler);
-		  } else {
-			setChildTextNode("resultsRequest", "1 usec");
-		  }
-      }
-    });
-    */
   });
 }
 
