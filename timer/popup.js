@@ -7,6 +7,7 @@ function setChildTextNode(elementId, text) {
   document.getElementById(elementId).innerText = text;
 }
 
+var c = 1;
 // Tests the roundtrip time of sendRequest().
 function testRequest() {
   setChildTextNode("resultsRequest", "1 running...");
@@ -15,8 +16,10 @@ function testRequest() {
 	//console.debug('tabs: ' + JSON.stringify(tabs));
 	var tab = tabs[0];
 	console.debug('tabs: ' + tab.id);
-	chrome.tabs.sendRequest(tab.id, {counter: 1}, function handler(response) {
+	chrome.tabs.sendRequest(tab.id, {counter: c}, function handler(response) {
 		console.debug('response: ' + JSON.stringify(response));
+		setChildTextNode("resultsRequest", "1 done: " + JSON.stringify(response));
+		c = response.counter;
 	});
     
   });
@@ -24,21 +27,6 @@ function testRequest() {
 
 // Tests the roundtrip time of Port.postMessage() after opening a channel.
 function testConnect() {
-  setChildTextNode("resultsConnect", "2 running...");
-
-  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-
-
-    var port = chrome.tabs.connect(tabs[0].id);
-    port.postMessage({counter: 1});
-    port.onMessage.addListener(function getResp(response) {
-      if (response.counter < 1000) {
-        port.postMessage({counter: response.counter});
-      } else {
-        setChildTextNode("resultsConnect", "2 usec");
-      }
-    });
-  });
 }
 
 document.addEventListener('DOMContentLoaded', function() {
