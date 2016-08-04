@@ -4,7 +4,7 @@
   "description": "Stash to Root",
   "content_scripts": [
     {
-      "matches": ["http://*/*"],
+      "matches": ["http://*/*", "https://*/*"],
       "js": ["page.js"]
     }
   ],
@@ -13,5 +13,10 @@
     "default_icon": "clock.png",
     "default_popup": "popup.html"
   },
+  "permissions": [
+	"http://*/*",
+	"https://*/*",
+	"tabs"
+  ],
   "manifest_version": 2
 }
