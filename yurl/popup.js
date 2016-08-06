@@ -23,6 +23,9 @@ function testRequest() {
 				chrome.tabs.sendMessage(tab.id, {counter: c}, null, function handler(response) {
 					console.debug('message 1 response received');
 					setChildTextNode("resultsRequest", "1 done: " + JSON.stringify(response));
+					
+					chrome.tabs.remove(tab.id, function (){})
+
 				});
 				console.debug('message 1 sent');
 			}, 5000);
