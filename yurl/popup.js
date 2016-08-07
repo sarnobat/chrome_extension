@@ -6,10 +6,11 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 			// Wait 5 seconds. It seems like sending it immediately doesn't give a chance for the content script to load
 			setTimeout(function () {
 				chrome.tabs.sendMessage(tab.id, {counter: 0, message : "was stashing tab " + tab.id +  " successful?" }, null, function handler(response) {
-					//chrome.tabs.remove(tab.id, function (){})
+
 					console.debug(response.message);
 					if (response.message == 'found success') {
 						console.debug('Able to close tab ' + tab.id);
+						chrome.tabs.remove(tab.id, function (){})
 					} else {
 						console.debug('Cannot close');
 					}
