@@ -15,6 +15,6 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 						console.debug('Cannot close');
 					}
 				});
-			}, 5000);
+			}, 20000);
 		});
 });
