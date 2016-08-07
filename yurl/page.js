@@ -17,7 +17,8 @@ chrome.extension.onMessage.addListener(
 	var success =   document.getElementsByTagName("body")[0].innerHTML.startsWith("Success");
 	console.debug('inner HTML = ' + success);
 	if (success) {
-		sendResponse({counter: request.counter+1, message : "found success" });
+		chrome.extension.sendRequest({tab: request.tab, message: "inner HTML starts with success? " + success});
+		sendResponse({tab: request.tab, counter: request.counter+1, message : "found success" });
 	} else {
 
 	}
