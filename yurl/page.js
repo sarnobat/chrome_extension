@@ -12,11 +12,12 @@ chrome.runtime.onConnect.addListener(function(port) {
 */
 chrome.extension.onMessage.addListener(
   function(request, sender, sendResponse) {
-  	console.debug('1 chrome.extension.onRequest.addListener');
+  
+  	console.debug('1 chrome.extension.onRequest.addListener: ' + request);
 	var success =   document.getElementsByTagName("body")[0].innerHTML.startsWith("Success");
 	console.debug('inner HTML = ' + success);
 	if (success) {
-		sendResponse({counter: request.counter+1});
+		sendResponse({counter: request.counter+1, message : "found success" });
 	} else {
 
 	}
