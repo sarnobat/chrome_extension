@@ -28,26 +28,3 @@ chrome.extension.onMessage.addListener(
   });
 
 var n = 0;
-function sendMessageWhenSuccessful() {
-	console.debug('tick');
-	setTimeout(function () {
-		console.debug('tick ' + n);
-		if (n >10) {
-					//window.location.href = 'http://netgear.rohidekar.com/yurl/stash2.html?url=' + encodeURIComponent(document.URL) + '&nodeId=45';
-		} else {
-			 n +=1;
-//			 sendMessageWhenSuccessful();
-		}
-//			if (n < 10) {
-//				++n;
-//				sendMessageWhenSuccessful();
-//			}
-		sendMessageWhenSuccessful();
-	}, 1000);
-
-}
-
-
-function myMain (evt) {
- 	alert("static html loaded");
-}

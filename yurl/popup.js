@@ -6,7 +6,7 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 	chrome.extension.sendRequest({tab: tab, message: "popup requested a close"});
 	
 	// invoke the stash operation
-	chrome.tabs.update(tab.id,
+/*	chrome.tabs.update(tab.id,
 		{url: 'http://netgear.rohidekar.com/yurl/stash2.html?url=' + encodeURIComponent(tab.url) + '&nodeId=45' },
 		
 		// Do all the closing related logic
@@ -24,5 +24,5 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 					}
 				});
 			}, 20000);
-		});
+		});*/
 });
