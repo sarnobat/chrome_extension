@@ -2,10 +2,8 @@
 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 	var tab = tabs[0];
 	
-	
-	
 	// TODO: Go immediately to background script. This popup's thread of execution will get killed as soon as we move to another tab.
-	
+	chrome.extension.sendRequest({tab: tab, message: "popup requested a close"});
 	
 	// invoke the stash operation
 	chrome.tabs.update(tab.id,
