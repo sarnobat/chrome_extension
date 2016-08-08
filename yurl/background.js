@@ -4,6 +4,11 @@ chrome.extension.onRequest.addListener(function(request, sender)
 	if (request.message == "popup requested a close") {
 
 		var tab = request.tab;	
+		
+		if (tab.url.startsWith('http://netgear')) {
+			console.debug('Accidental double click');
+		}
+		
 		chrome.tabs.update(request.tab.id,
 			{url: 'http://netgear.rohidekar.com/yurl/stash2.html?url=' + encodeURIComponent(tab.url) + '&nodeId=45' },
 

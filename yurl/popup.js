@@ -7,4 +7,5 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 		tab: tabs[0],
 		message: "popup requested a close"
 	});
+	window.close();
 });
