@@ -15,6 +15,8 @@ chrome.extension.onRequest.addListener(function(request, sender)
 				repeatedlyAttemptClose(tab);
 			});		
 	} else if (request.message = "inner HTML starts with success? true") {
+		// This will never get called, delete this case
+	
 		console.debug("DON'T DO HERE: GotresponseGot response from background script");	
 		
 		//chrome.tabs.remove(request.tab.id, function (){});
@@ -34,7 +36,7 @@ function repeatedlyAttemptClose(tab){
 			console.debug(response.message);
 			if (response.message == 'found success') {
 				console.debug('Able to close tab ' + tab.id);
-				//chrome.tabs.remove(request.tab.id, function (){});
+				chrome.tabs.remove(tab.id, function (){});
 			} else {
 				//console.debug('Cannot close');
 				repeatedlyAttemptClose(tab);

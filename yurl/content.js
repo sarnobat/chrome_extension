@@ -18,7 +18,7 @@ chrome.extension.onMessage.addListener(
 	console.debug('inner HTML = ' + success);
 	if (success) {
 		// send to background script
-		chrome.extension.sendRequest({tab: request.tab, message: "inner HTML starts with success? " + success});
+//		chrome.extension.sendRequest({tab: request.tab, message: "inner HTML starts with success? " + success});
 		
 		// send to popup
 		sendResponse({tab: request.tab, counter: request.counter+1, message : "found success" });
