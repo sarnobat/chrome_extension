@@ -11,10 +11,11 @@ chrome.extension.onRequest.addListener(function(request, sender)
 		
 		var other = 29172;
 		var root = 45;
+		var tech = 46;
 		chrome.tabs.update(request.tab.id,
 			{url: 'http://netgear.rohidekar.com/yurl/stash2.html?url='
 				+ encodeURIComponent(tab.url)
-				+ '&nodeId=' + other },
+				+ '&nodeId=' + 46 },
 
 			// Do all the closing related logic
 			function(){
