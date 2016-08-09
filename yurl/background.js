@@ -15,7 +15,7 @@ chrome.extension.onRequest.addListener(function(request, sender)
 		chrome.tabs.update(request.tab.id,
 			{url: 'http://netgear.rohidekar.com/yurl/stash2.html?url='
 				+ encodeURIComponent(tab.url)
-				+ '&nodeId=' + 46 },
+				+ '&nodeId=' + other },
 
 			// Do all the closing related logic
 			function(){
