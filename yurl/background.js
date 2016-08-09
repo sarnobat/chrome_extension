@@ -9,8 +9,12 @@ chrome.extension.onRequest.addListener(function(request, sender)
 			console.debug('Accidental double click');
 		}
 		
+		var other = 29172;
+		var root = 45;
 		chrome.tabs.update(request.tab.id,
-			{url: 'http://netgear.rohidekar.com/yurl/stash2.html?url=' + encodeURIComponent(tab.url) + '&nodeId=45' },
+			{url: 'http://netgear.rohidekar.com/yurl/stash2.html?url='
+				+ encodeURIComponent(tab.url)
+				+ '&nodeId=' + other },
 
 			// Do all the closing related logic
 			function(){
