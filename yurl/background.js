@@ -16,7 +16,7 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 		chrome.tabs.update(tab.id,
 			{url: 'http://netgear.rohidekar.com/yurl/stash2.html?url='
 				+ encodeURIComponent(tab.url)
-				+ '&nodeId=' + other },
+				+ '&nodeId=' + products },
 
 			// Do all the closing related logic
 			function(){
