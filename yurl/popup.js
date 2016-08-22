@@ -1,3 +1,5 @@
+// REMOVE THIS FILE
+
 // Find out the ID of the current tab
 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 	
