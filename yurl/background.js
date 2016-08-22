@@ -12,6 +12,7 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 		var other = 29172;
 		var root = 45;
 		var tech = 46;
+		var products = 29196;
 		chrome.tabs.update(tab.id,
 			{url: 'http://netgear.rohidekar.com/yurl/stash2.html?url='
 				+ encodeURIComponent(tab.url)
