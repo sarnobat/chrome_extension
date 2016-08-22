@@ -1,8 +1,36 @@
+chrome.browserAction.onClicked.addListener(function(tab) {
+
+	chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+		console.debug('button clicked: ' + tabs[0]);
+		
+		
+		
+		var tab = tabs[0];	
+		
+		if (tab.url.startsWith('http://netgear')) {
+			console.debug('Accidental double click');
+		}
+		
+		var other = 29172;
+		var root = 45;
+		var tech = 46;
+		chrome.tabs.update(tab.id,
+			{url: 'http://netgear.rohidekar.com/yurl/stash2.html?url='
+				+ encodeURIComponent(tab.url)
+				+ '&nodeId=' + root },
+
+			// Do all the closing related logic
+			function(){
+				repeatedlyAttemptClose(tab);
+			});	
+	});
+
+});
 
 chrome.extension.onRequest.addListener(function(request, sender)
 {
 	if (request.message == "popup requested a close") {
-
+console.debug('delete this, it is never called');
 		var tab = request.tab;	
 		
 		if (tab.url.startsWith('http://netgear')) {
@@ -28,7 +56,7 @@ chrome.extension.onRequest.addListener(function(request, sender)
 });
 
 function repeatedlyAttemptClose(tab){
-
+	console.debug('repeatedlyAttemptClose() begin');
 	// Wait 5 seconds. It seems like sending it immediately doesn't give a chance for the content script to load
 	setTimeout(function () {
 		// Check if stash was successful
