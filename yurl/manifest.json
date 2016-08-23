@@ -8,7 +8,7 @@
       "js": ["page.js"]
     }
   ],
-  "background": { "scripts": ["background.js"] },
+  "background": { "scripts": ["background.js", "alarms.js"] },
   "browser_action": {
     "default_title": "Time to current page",
     "default_icon": "orange.png" // green
@@ -17,7 +17,8 @@
   "permissions": [
 	"http://*/*",
 	"https://*/*",
-	"tabs"
+	"tabs",
+	"alarms"
   ],
   "manifest_version": 2
 }

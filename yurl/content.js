@@ -1,3 +1,4 @@
+//alert('Content script loading');
 chrome.extension.onMessage.addListener(
 	function(request, sender, sendResponse) {
 		console.debug('received message');
@@ -18,3 +19,4 @@ chrome.extension.onMessage.addListener(
 		}
 	}
 );
+//alert('Content script loaded');
