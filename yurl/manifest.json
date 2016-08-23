@@ -8,7 +8,7 @@
       "js": ["page.js"]
     }
   ],
-  "background": { "scripts": ["background.js", "alarms.js"] },
+  "background": { "scripts": ["alarms.js"] },
   "browser_action": {
     "default_title": "Time to current page",
     "default_icon": "orange.png" // green

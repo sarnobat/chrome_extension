@@ -20,7 +20,7 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 
 			// Do all the closing related logic
 			function(){
-				repeatedlyAttemptClose(tab);
+				//repeatedlyAttemptClose(tab);
 			});	
 	});
 
@@ -34,6 +34,7 @@ function repeatedlyAttemptClose(tab){
 		chrome.tabs.sendMessage(tab.id, {tab: tab.id, counter: 0, message : "was stashing tab " + tab.id +  " successful?" }, null, function handler(response) {
 			console.debug(response.message);
 			if (response.message == 'found success') {
+				alert('closing:  ' + tab.url);
 				chrome.tabs.remove(tab.id, function (){});
 			} else {
 				console.debug('Cannot close yet, will try again in 5 seconds');
