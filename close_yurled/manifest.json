@@ -5,7 +5,7 @@
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
-      "js": ["page.js"]
+      "js": ["content.js"]
     }
   ],
   "background": { "scripts": ["alarms.js"] },
