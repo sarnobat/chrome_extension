@@ -1,7 +1,7 @@
 {
-  "name": "Yurl",
+  "name": "Close Tab",
   "version": "1.0",
-  "description": "Stash to Product",
+  "description": "Closes tabs that have been stashed (looks for the word 'Success')",
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
@@ -11,7 +11,7 @@
   "background": { "scripts": ["alarms.js"] },
   "browser_action": {
     "default_title": "Time to current page",
-    "default_icon": "orange.png" // green
+    "default_icon": "green2.png" // green
     
   },
   "permissions": [
