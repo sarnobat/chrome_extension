@@ -12,8 +12,8 @@ chrome.alarms.onAlarm.addListener(function( alarm ) {
 			var tab = tabs[i];
 			var url = tabs[i].url;
 //			console.log("-");
-			if (url.includes('netgear.rohidekar.com/yurl/stash2.html') ||
-			    url.includes('netgear.rohidekar.com/yurl/httpcat.html')) {
+			if (url.includes('netgear.rohidekar.com/yurl/stash') ||
+			    url.includes('netgear.rohidekar.com/yurl/httpcat')) {
 				console.log("(sending message to stashed tab - but may not be successful yet): " + url);
 				chrome.tabs.sendMessage(tab.id, {tab: tab, counter: 0, message : "was stashing tab " + tab.id +  " successful?" }, null, function handler(response) {
 					// doesn't work
