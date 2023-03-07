@@ -3,7 +3,7 @@ close yurled, open image, hello world
 
 ```mermaid
 flowchart TD
-    manifest.json --> background.js[[background.js]] --> chrome.tabs[i].url
+    manifest.json --> background.js[[background.js]] --> chrome.tabs.url["chrome.tabs[i].url"]
     manifest.json --> content.js --> document.getElementsByTagName
     background.js --> chrome.tabs.sendMessage
     
