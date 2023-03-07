@@ -3,5 +3,6 @@ close yurled, open image, hello world
 
 ```mermaid
 flowchart TD
-    manifest.json --> alarms.js
+    manifest.json --> background.js
+    manifest.json --> content.js
 ```
