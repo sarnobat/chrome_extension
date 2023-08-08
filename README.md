@@ -1,5 +1,9 @@
 # chrome_extension
-close yurled, open image, hello world
+
+* close yurled,
+* open image, 
+* hello world
+* TODO: transfer urls to different profile maybe
 
 ```mermaid
 flowchart TD
