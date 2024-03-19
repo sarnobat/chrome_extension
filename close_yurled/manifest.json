@@ -8,17 +8,17 @@
       "js": ["content.js"]
     }
   ],
-  "background": { "scripts": ["alarms.js"] },
-  "browser_action": {
-    "default_title": "Time to current page",
-    "default_icon": "green2.png" // green
-    
+  "background": {
+    "service_worker": "service_worker.js",
+    "type": "module"
   },
-  "permissions": [
+  "host_permissions": [
 	"http://*/*",
-	"https://*/*",
+	"https://*/*"
+	],
+  "permissions": [
 	"tabs",
 	"alarms"
   ],
-  "manifest_version": 2
+  "manifest_version": 3
 }
